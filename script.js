@@ -22,7 +22,6 @@ function startPauseTimer() {
       } else {
         clearInterval(countdown);
         running = false;
-        // Fade out numbers, show TIME'S UP, flash background
         timerDisplay.style.opacity = "0";
         timesUpMessage.style.display = "block";
         document.body.classList.add("flash-bg");
@@ -42,6 +41,17 @@ function resetTimer() {
   document.body.classList.remove("flash-bg");
 }
 
+// Toggle fullscreen
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch(err => {
+      console.log(`Error attempting fullscreen: ${err.message}`);
+    });
+  } else {
+    document.exitFullscreen();
+  }
+}
+
 document.addEventListener("keydown", (e) => {
   if (e.code === "ArrowUp") {
     totalSeconds += 60;
@@ -57,6 +67,9 @@ document.addEventListener("keydown", (e) => {
   }
   if (e.code === "Delete") {
     resetTimer();
+  }
+  if (e.code === "KeyF") {
+    toggleFullscreen(); // press F to toggle fullscreen
   }
 });
 
