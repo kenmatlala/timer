@@ -1,34 +1,40 @@
 body {
   margin: 0;
   background: black;
-  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
   overflow: hidden;
+  font-family: monospace;
+  transition: background 0.5s ease;
 }
 
 #timer {
-  font-size: 20vw; /* responsive big numbers */
+  font-size: 20vw;
   font-weight: bold;
-  font-family: monospace;
+  color: white;
+  position: absolute;
+  transition: opacity 1s ease;
+  z-index: 1;
 }
 
 #times-up {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 10vw;
+  font-size: 15vw;
   font-weight: bold;
-  color: red;
+  color: white; /* white text */
   display: none;
-  animation: flash 1s infinite;
+  z-index: 2;
 }
 
-@keyframes flash {
-  0%   { opacity: 1; }
-  50%  { opacity: 0; }
-  100% { opacity: 1; }
+/* Red flashing background */
+.flash-bg {
+  animation: flashBg 1s infinite;
+}
+
+@keyframes flashBg {
+  0%   { background: red; }
+  50%  { background: black; }
+  100% { background: red; }
 }
