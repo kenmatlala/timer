@@ -22,7 +22,10 @@ function startPauseTimer() {
       } else {
         clearInterval(countdown);
         running = false;
+        // Fade out numbers, show TIME'S UP, flash background
+        timerDisplay.style.opacity = "0";
         timesUpMessage.style.display = "block";
+        document.body.classList.add("flash-bg");
       }
     }, 1000);
   } else {
@@ -35,6 +38,8 @@ function resetTimer() {
   totalSeconds = 0;
   updateDisplay();
   timesUpMessage.style.display = "none";
+  timerDisplay.style.opacity = "1";
+  document.body.classList.remove("flash-bg");
 }
 
 document.addEventListener("keydown", (e) => {
@@ -47,7 +52,7 @@ document.addEventListener("keydown", (e) => {
     updateDisplay();
   }
   if (e.code === "Space") {
-    e.preventDefault(); // prevent page scroll
+    e.preventDefault(); // prevent scroll
     startPauseTimer();
   }
   if (e.code === "Delete") {
@@ -55,4 +60,4 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-updateDisplay(); // initial
+updateDisplay();
